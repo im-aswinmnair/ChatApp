@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background:white;
+    color: #721c24;
+    padding: 50px;
+}
+/* .error-container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+img {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px 0;
+}
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    background: #dc3545;
+    border-radius: 5px;
+}

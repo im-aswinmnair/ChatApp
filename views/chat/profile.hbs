@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WA CHAT APP</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+</head>
+<body>
+    <div class="verify-container">
+        <h2>Set up your profile</h2>
+        <form action="/Chat/profile/{{user._id}}" method="POST" enctype="multipart/form-data">
+          
+            <label for="image">Profile Picture:</label>
+            <input type="file" name="image" accept="image/*" />
+   
+           {{#if user.image}}
+           <label>Current Image:</label>
+          <img src="/images/{{user.image}}" alt="Blog Image" class="blog-image">
+           {{/if}}
+           
+            <label for="name">Name:</label>
+            <input type="text" name="username" placeholder="Enter your name" value="{{user.username}}" required />
+
+              <label for="bio">Bio:</label>
+              <textarea name="bio" placeholder="Enter a short bio" required>{{user.bio}}</textarea> 
+
+            <button type="submit">Save Profile</button>
+
+        
+            {{#if error}}<p class="error">{{error}}</p>{{/if}}
+        </form>
+    </div>
+</body>
+</html>

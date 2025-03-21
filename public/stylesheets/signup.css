@@ -1,0 +1,93 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(149.96deg, #1c92d2 12.51%, #f2fcfe 89.53%); */
+
+    background: url('/images/DALL·E\ 2025-03-17\ 11.06.29\ -\ A\ futuristic\ cyberpunk-style\ dark\ mode\ background\ for\ a\ chat\ web\ application.\ The\ background\ features\ deep\ black\ and\ dark\ blue\ tones\ with\ neon\ cyberpu.webp'),#000;
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+}
+
+
+.signup-container {
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    border-radius: 10px;
+    width: 350px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.signup-container h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+
+.signup-container label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    margin: 10px 0 5px;
+}
+
+
+.signup-container input {
+    width: 100%;
+    height: 35px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+
+.signup-container button {
+    margin: 5px;
+    background: #5D3754;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.signup-container button:hover {
+    background: #A78AB5;
+}
+
+
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: white;
+}
+
+.login-link a {
+    color: rgb(21, 56, 253);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

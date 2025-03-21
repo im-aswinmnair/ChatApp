@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div class="chat-container">
+        <div class="mini-sidebar">
+            <div class="profile"><button onclick="openform()"><span class="material-symbols-outlined" style="color:white;">account_circle</span></button></div>
+            <div class="settings"><a href="/settings"><span class="material-symbols-outlined" style="color: white;">settings</span></a></div>
+            <div class="logout"><a href="/logout"><span class="material-symbols-outlined" style="color:white">logout</span></a></div>
+
+             <!-- Profile Button -->
+
+
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <button onclick="closemodal()" class="close-btn">
+            <span class="close">&times;</span>
+        </button>
+        <img src="" id="profilePic" alt="Profile Picture" class="profile-img">
+        
+        <h2>Profile Details</h2>
+        <p><strong>Your Name:</strong> <span id="profileName">John Doe</span></p>
+        <p><strong>Email:</strong> <span id="profileEmail">email@example.com</span></p>
+        <p><strong>Bio:</strong> <span id="profileBio">Bio goes here...</span></p>
+    </div>
+</div>
+
+
+         
+        </div>
+        
+        <div class="chat-sidebar">
+            <h2>Chats</h2>
+            <div class="contact-list">
+                {{#each users}}
+                <div class="contact" data-user-id="{{this._id}}">
+                    <img src="/images/{{this.image}}" alt="{{this.username}}">
+                    <div class="contact-info">
+                        <h4>{{this.username}}</h4>
+                       
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        
+        <div class="chat-window">
+            <div class="chat-header">
+                <img src="" id="chat-user-pic" alt="User">
+                <h3 id="chat-user-name">Select a user</h3>
+
+
+
+           
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button id="send-button" disabled>Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/openmodal.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+    const socket = io();
+    const chatimage=document.getElementById('chat-user-pic');
+    const chatusername=document.getElementById('chat-user-name')
+    const chatMessages = document.getElementById("chat-messages");
+    const messageInput = document.getElementById("message-input");
+    const sendButton = document.getElementById("send-button");
+
+    let currentChatUserId = null;
+    let currentUserId = null;
+
+    try {
+        const res = await fetch("/Chat/getCurrentUser");
+        const data = await res.json();
+        currentUserId = data.userId;
+
+          
+
+    } catch (err) {
+        console.error("Error fetching current user:", err);
+    }
+
+    document.querySelectorAll(".contact").forEach(contact => {
+        contact.addEventListener("click", async () => {
+            currentChatUserId = contact.dataset.userId;
+            chatimage.src=contact.querySelector('img').src
+            chatusername.textContent=contact.querySelector("h4").textContent;
+            {{!-- chatMessages.innerHTML = `<p>Loading messages...</p>`; --}}
+            sendButton.disabled = false;
+
+            try {
+                const res = await fetch(`/Chat/messages/${currentChatUserId}`);
+                const messages = await res.json();
+                chatMessages.innerHTML = "";
+                messages.forEach(msg => {
+                    const messageClass = msg.senderId === currentUserId ? "sent" : "received";
+                    chatMessages.innerHTML += `<div class="message ${messageClass}">${msg.message}</div>`;
+                });
+            } catch (err) {
+                console.error("Error loading messages:", err);
+            }
+        });
+    });
+
+    sendButton.addEventListener("click", () => {
+        const message = messageInput.value.trim();
+        if (!message || !currentChatUserId) return;
+
+        socket.emit("private message", {
+            senderId: currentUserId,
+            receiverId: currentChatUserId,
+            message: message,
+        });
+
+        chatMessages.innerHTML += `<div class="message sent">${message}</div>`;
+        messageInput.value = "";
+    });
+
+    socket.on(`private message ${currentUserId}`, ({ senderId, message }) => {
+        if (senderId === currentChatUserId) {
+            chatMessages.innerHTML += `<div class="message received">${message}</div>`;
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

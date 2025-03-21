@@ -1,0 +1,42 @@
+/* Users Page Styles */
+.user-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .user-item {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  .user-item:hover {
+    background: #e2e6ea;
+  }
+  
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #ddd;
+  }
+  
+  .user-link {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #007bff;
+  }
+  
+  .user-link:hover {
+    color: #0056b3;
+  }
+  
