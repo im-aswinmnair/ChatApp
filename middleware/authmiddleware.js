@@ -8,7 +8,7 @@ exports.authMiddleware = async (req, res, next) => {
 
     if (!token) {
        
-        return res.redirect("/login");
+        return res.redirect("/");
     }
 
     try {
@@ -18,8 +18,8 @@ exports.authMiddleware = async (req, res, next) => {
         next();
     } catch (error) {
        
-        // res.clearCookie("token");
-        res.redirect("/login");
+        res.clearCookie("token");
+        res.redirect("/");
     }
 };
 
@@ -30,7 +30,7 @@ exports.requireGuest = (req, res, next) => {
         try {
             jwt.verify(token, SECRET_KEY);
 
-            return res.redirect("/home");
+            return res.redirect(`/Chat/chat/${user._id}`);
         } catch (error) {
             console.error("Invalid token for guest:", error.message);
         }

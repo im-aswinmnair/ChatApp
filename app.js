@@ -99,12 +99,6 @@ hbs.registerHelper("eq", function (a, b) {
 
 app.use((err, req, res, next) => {
    
-    const decoded=jwt.verify(req.cookies.token,process.env.SECRET_KEY);
-
-    const currentuser=decoded.id
-
-
-
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);

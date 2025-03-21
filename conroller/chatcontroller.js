@@ -23,10 +23,6 @@ exports.getprofile = async (req, res) => {
 
 
 
-// exports.getprofile=(req,res)=>{
-//           res.render("profile")
-//           console.log("user_id",req.params.id)
-// }
 
 
 exports.postprofile = async (req, res) => {
