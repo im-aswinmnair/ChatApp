@@ -156,7 +156,13 @@ exports.postlogin=async(req,res)=>{
 
       res.cookie("token", token, { httpOnly: true });
 
-      res.redirect(`/Chat/profile/${user._id}`);
+
+    //   if (user.file && user.username && user.bio) {
+    //     return res.redirect("/Chat/chat");
+    // }
+
+
+      return   res.redirect(`/Chat/profile`);
 
 
     }catch(error){

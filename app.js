@@ -11,8 +11,8 @@ const mongoose = require('mongoose');
 const jwt=require('jsonwebtoken')
 require('dotenv').config();
 
-var indexRouter = require('./routes/authrout');
-var usersRouter = require('./routes/chatrout');
+var indexRouter = require('./routes/authroute');
+var usersRouter = require('./routes/chatroute');
 const Message = require('./models/chat');
 const { group } = require('console');
 

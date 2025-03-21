@@ -8,8 +8,8 @@ const image=require('../middleware/upload')
 
 
 
-router.get("/profile/:id",authMiddleware,chatcontroller.getprofile)
-router.get("/chat/:id",authMiddleware,chatcontroller.getchat)
+router.get("/profile",authMiddleware,chatcontroller.getprofile)
+router.get("/chat",authMiddleware,chatcontroller.getchat)
 router.get("/messages/:id", authMiddleware,chatcontroller.getmessage)
 router.get('/getCurrentUser',authMiddleware,chatcontroller.getCurrentUser)
 
@@ -17,7 +17,7 @@ router.get('/getCurrentUser',authMiddleware,chatcontroller.getCurrentUser)
 
 
 
-router.post("/profile/:id",image.single("image"),authMiddleware,chatcontroller.postprofile)
+router.post("/profile",image.single("image"),authMiddleware,chatcontroller.postprofile)
 
 
 

@@ -5,7 +5,9 @@ const user = require('../models/user');
 
 exports.getprofile = async (req, res) => {
     try {
-        const userId = req.params.id;
+
+        const decoded=jwt.verify(req.cookies.token, process.env.SECRET_KEY);
+        const userId =decoded.id;
 
   
         const user = await User.findById(userId);
@@ -13,8 +15,12 @@ exports.getprofile = async (req, res) => {
             return res.status(404).send("User not found.");
         }
 
+        if (user.file && user.username && user.bio) {
+            return res.render("chatlist",{ user: user });
+        }
+
         
-        res.render("profile", { user: user });
+      return  res.render("profile", { user: user });
     } catch (error) {
     
         res.status(500).render("error", { message: "Error retrieving profile." });
@@ -30,8 +36,11 @@ exports.postprofile = async (req, res) => {
         console.log("Request Body:", req.body);
        
 
+        const decoded=jwt.verify(req.cookies.token, process.env.SECRET_KEY);
+        const userId =decoded.id;
+
        
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(userId);
       
         if (!user) {
             return res.status(404).send("No user found with the provided ID.");
@@ -47,7 +56,7 @@ exports.postprofile = async (req, res) => {
 
         await user.save();
 
-        res.redirect(`/Chat/chat/${user._id}`);
+        res.redirect(`/Chat/chat`);
     } catch (error) {
    
         res.status(500).render("error", { message: "Error updating profile." });

@@ -23,14 +23,14 @@ exports.authMiddleware = async (req, res, next) => {
     }
 };
 
-exports.requireGuest = (req, res, next) => {
+exports.protectRouts = (req, res, next) => {
     const token = req.cookies.token;
    
     if (token) {
         try {
-            jwt.verify(token, SECRET_KEY);
+             jwt.verify(token, SECRET_KEY);
 
-            return res.redirect(`/Chat/chat/${user._id}`);
+            return res.redirect(`/Chat/chat`);
         } catch (error) {
             console.error("Invalid token for guest:", error.message);
         }
