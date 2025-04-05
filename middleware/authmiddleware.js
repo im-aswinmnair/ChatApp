@@ -30,7 +30,7 @@ exports.protectRouts = (req, res, next) => {
         try {
              jwt.verify(token, SECRET_KEY);
 
-            return res.redirect(`/Chat/chat`);
+            return res.redirect(`/chat`);
         } catch (error) {
             console.error("Invalid token for guest:", error.message);
         }
@@ -39,5 +39,3 @@ exports.protectRouts = (req, res, next) => {
   
     next();
 };
-
-

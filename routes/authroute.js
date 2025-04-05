@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const authcontroller=require('../conroller/authcontroller')
+const authcontroller=require('../controller/authcontroller')
 const { protectRouts } = require("../middleware/authmiddleware");
 
 

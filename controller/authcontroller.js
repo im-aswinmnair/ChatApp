@@ -1,6 +1,6 @@
 const User=require('../models/user')
 const bcrypt = require("bcrypt");
-const transporter=require('../confiq/email')
+const transporter=require('../config/email')
 const otpGenerator = require("otp-generator");
 const crypto = require("crypto");
 const { error } = require('console');
@@ -156,13 +156,15 @@ exports.postlogin=async(req,res)=>{
 
       res.cookie("token", token, { httpOnly: true });
 
+   // If profile is complete, redirect to chatlist
+   if (user.image && user.username && user.bio) {
+    return res.redirect("/chat");
+}
+     
 
-    //   if (user.file && user.username && user.bio) {
-    //     return res.redirect("/Chat/chat");
-    // }
+    
 
-
-      return   res.redirect(`/Chat/profile`);
+      return   res.redirect(`/profile`);
 
 
     }catch(error){

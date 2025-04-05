@@ -12,7 +12,7 @@ function closemodal(){
 
 async function userdeatiles() {
      try{
-        const response=await fetch("/Chat/getCurrentUser");
+        const response=await fetch("/getCurrentUser");
         const user = await response.json();
         console.log("user name",user.username);
         document.getElementById('profilePic').src =  `/images/${user.image}` ; 

@@ -1,93 +1,96 @@
-
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: linear-gradient(149.96deg, #1c92d2 12.51%, #f2fcfe 89.53%); */
-
-    background: url('/images/DALL·E\ 2025-03-17\ 11.06.29\ -\ A\ futuristic\ cyberpunk-style\ dark\ mode\ background\ for\ a\ chat\ web\ application.\ The\ background\ features\ deep\ black\ and\ dark\ blue\ tones\ with\ neon\ cyberpu.webp'),#000;
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     z-index: 1;
 }
 
-
 .signup-container {
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(10px);
-    padding: 35px;
-    border-radius: 10px;
-    width: 350px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 40px;
+    border-radius: 12px;
+    width: 400px;
     margin: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .signup-container h2 {
-    color: white;
-    margin-bottom: 20px;
+    color: #333333;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 700;
 }
 
-
 .error {
-    color: red;
+    color: #d32f2f;
     font-size: 14px;
     margin-bottom: 10px;
 }
 
-
 .signup-container label {
     display: block;
     text-align: left;
-    font-weight: bold;
-    color: white;
+    font-weight: 500;
+    color: #555555;
     margin: 10px 0 5px;
 }
 
-
 .signup-container input {
     width: 100%;
-    height: 35px;
+    height: 40px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding-left: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding-left: 12px;
     font-size: 14px;
+    background: #f9f9f9;
+    transition: border-color 0.3s;
 }
 
+.signup-container input:focus {
+    border-color: #3f51b5;
+    outline: none;
+}
 
 .signup-container button {
-    margin: 5px;
-    background: #5D3754;
+    margin: 10px 0;
+    background: #3f51b5;
     color: white;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
     border: none;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 .signup-container button:hover {
-    background: #A78AB5;
+    background: #303f9f;
 }
 
-
 .login-link {
-    margin-top: 15px;
+    margin-top: 20px;
     font-size: 14px;
-    color: white;
+    color: #555555;
 }
 
 .login-link a {
-    color: rgb(21, 56, 253);
+    color: #3f51b5;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .login-link a:hover {
     text-decoration: underline;
+}
+
+.signup-container img {
+    width: 100px;
 }

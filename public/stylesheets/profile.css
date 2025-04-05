@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    /* background: linear-gradient(149.96deg, #1c92d2 12.51%, #f2fcfe 89.53%); */
-    background: url('/images/DALL·E\ 2025-03-17\ 11.06.29\ -\ A\ futuristic\ cyberpunk-style\ dark\ mode\ background\ for\ a\ chat\ web\ application.\ The\ background\ features\ deep\ black\ and\ dark\ blue\ tones\ with\ neon\ cyberpu.webp'),#000;
+    background: url('/images/green-blue-theme-background.webp'), linear-gradient(149.96deg, #1c92d2 12.51%, #34a853 89.53%);
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,20 +9,18 @@ body {
     height: 100vh;
 }
 
-
 .verify-container {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     width: 300px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 128, 0, 0.2);
 }
-
 
 h2 {
     font-size: 24px;
     text-align: center;
-    color: #075e54; 
+    color: #1c92d2;
     margin-bottom: 20px;
 }
 
@@ -34,17 +31,18 @@ form {
 
 label {
     font-size: 14px;
-    color: #333;
+    color: #075e54;
     margin-bottom: 5px;
 }
 
-input[type="text"], textarea {
+input[type="text"],
+textarea {
     font-size: 16px;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 1px solid #1c92d2;
+    background-color: #e6f7ff;
 }
 
 input[type="file"] {
@@ -58,7 +56,7 @@ textarea {
 
 button {
     padding: 10px;
-    background-color: #075e54; /* WhatsApp green */
+    background-color: #34a853;
     color: white;
     border: none;
     border-radius: 8px;
@@ -68,20 +66,24 @@ button {
 }
 
 button:hover {
-    background-color: #128c7e; /* WhatsApp darker green on hover */
+    background-color: #1c92d2;
 }
 
 button:active {
-    background-color: #075e54; /* WhatsApp green */
+    background-color: #34a853;
 }
 
-
 .error {
-    color: red;
+    color: #d32f2f;
     font-size: 14px;
     margin-top: 10px;
     text-align: center;
 }
-.blog-image{
+
+.blog-image {
     border-radius: 100%;
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    border: 2px solid #34a853;
 }

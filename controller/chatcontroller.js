@@ -5,24 +5,22 @@ const user = require('../models/user');
 
 exports.getprofile = async (req, res) => {
     try {
+        // Decode the JWT token to get user ID
+        const decoded = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
+        const userId = decoded.id;
 
-        const decoded=jwt.verify(req.cookies.token, process.env.SECRET_KEY);
-        const userId =decoded.id;
-
-  
+        // Find the user from the database
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).send("User not found.");
         }
 
-        if (user.file && user.username && user.bio) {
-            return res.render("chatlist",{ user: user });
-        }
+     
 
-        
-      return  res.render("profile", { user: user });
+        // Otherwise, render the profile page
+        return res.render("profile", { user: user });
+
     } catch (error) {
-    
         res.status(500).render("error", { message: "Error retrieving profile." });
     }
 };
@@ -56,7 +54,7 @@ exports.postprofile = async (req, res) => {
 
         await user.save();
 
-        res.redirect(`/Chat/chat`);
+        res.redirect(`/chat`);
     } catch (error) {
    
         res.status(500).render("error", { message: "Error updating profile." });
@@ -64,20 +62,11 @@ exports.postprofile = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
 exports.getchat = async (req, res) => {
     try {
         let userId = null;
 
-       
+        // Check if the user has a valid token
         if (req.cookies.token) {
             try {
                 const decoded = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
@@ -86,24 +75,17 @@ exports.getchat = async (req, res) => {
                 console.error("Invalid Token:", error);
                 return res.redirect("/login");
             }
-        } else if (req.user) {
-            userId = req.user._id;
-        }
-
-        
-        if (!userId) {
+        } else {
             return res.redirect("/login");
         }
 
-        
+        // Fetch users who are not the logged-in user
         const users = await User.find({ _id: { $ne: userId } }).select("_id username image");
 
+        // Render the chatlist page with the users
         res.render("chatlist", { users, userId });
-        console.log("images:",users.image);
-        
 
     } catch (error) {
-       
         res.status(500).render("error", { message: "Error loading chat." });
     }
 };
@@ -160,22 +142,3 @@ exports.getmessage=async(req,res)=>{
             res.status(500).send("Error fetching messages.");
         }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

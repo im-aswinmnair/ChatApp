@@ -34,5 +34,3 @@ const uploads = multer({
 });
 
 module.exports = uploads;
-
-

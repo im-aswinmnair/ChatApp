@@ -35,7 +35,7 @@ const userschema=new mongoose.Schema({
     },
     image:{
         type: String, 
-        default: "images/default-blog.jpg",
+        default: "/images/default-blog.jpg",
     }
 },
 { timestamps: true }

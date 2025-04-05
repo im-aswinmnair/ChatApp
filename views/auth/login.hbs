@@ -4,25 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
       <link rel="stylesheet" href="/stylesheets/login.css">
-      <link rel="icon" type="image/png" href="/images/404.png">
+      
 
 
 </head>
 <body>
     <div class="login-container">
-     <img src="/images/logo.png" />
-    <h2>Login - Chat Application</h2>
+     <img src="/images/new_logo.jpg" />
+    <h2> Chit Chat Login</h2>
 
     {{#if error}}
         <p class="error">{{error}}</p>
     {{/if}}
 
     <form action="/login" method="POST">
-        {{!-- <label for="email">email:</label> --}}
-        <input type="email" id="username" name="email" required placeholder="Enter Email">
+        <label for="email">Email</label>
+        <input type="email" id="username" name="email" required placeholder="enter email">
 
-        {{!-- <label for="password">Password:</label> --}}
-        <input type="password" id="password" name="password" required   placeholder="Enter Password">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required   placeholder="enter password">
 
         <button type="submit">Login</button>
     </form>
