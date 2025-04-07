@@ -41,11 +41,20 @@
 }
 
 /* Chat Container */
-.chat-container {
+.chat-container {git
   display: flex;
   height: 100vh;
   background: #e5ddd5;
 }
+
+
+
+/* Add this CSS to your styles */
+.chat-messages {
+  height: 400px; /* Adjust based on the height you need */
+  overflow-y: auto;
+}
+
 
 /* Sidebar */
 .chat-sidebar {

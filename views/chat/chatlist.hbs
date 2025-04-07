@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
     <div class="chat-container">
         <div class="mini-sidebar">
-            <div class="profile"><button onclick="openform()"><span class="material-symbols-outlined" style="color:white;">account_circle</span>Profile</button></div>
-        
-            <div class="logout"><a href="/logout"><span class="material-symbols-outlined" style="color:white">logout</span>Logout</a></div>
+            <div class="profile"><button onclick="openform()"><span class="material-symbols-outlined"
+                        style="color:white;">account_circle</span>Profile</button></div>
+
+            <div class="logout"><a href="/logout"><span class="material-symbols-outlined"
+                        style="color:white">logout</span>Logout</a></div>
 
             <!-- Profile Button -->
             <div id="profileModal" class="modal">
@@ -20,7 +25,7 @@
                     <button onclick="closemodal()" class="close-btn">
                         <span class="close">&times;</span>
                     </button>
-                    <img  id="profilePic" alt="User Profile Picture" class="profile-img">
+                    <img id="profilePic" alt="User Profile Picture" class="profile-img">
                     <h2>Profile Details</h2>
                     <p><strong>Profile Name:</strong> <span id="profileName">John Doe</span></p>
                     <p><strong>Email:</strong> <span id="profileEmail">email@example.com</span></p>
@@ -45,8 +50,8 @@
 
         <div class="chat-window">
             <div class="chat-header">
-                <img id="chat-user-pic" >
-                <h3 id="chat-user-name">Chit Chat</h3>
+                <img id="chat-user-pic" src="/images/new_logo.jpg">
+                <h3 id="chat-user-name">We Chat</h3>
             </div>
             <div class="chat-messages" id="chat-messages"></div>
             <div class="chat-input">
@@ -100,6 +105,12 @@
                 });
             });
 
+            // Scroll to the bottom of the chat after a new message is added
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+
             // Send message
             sendButton.addEventListener("click", () => {
                 const message = messageInput.value.trim();
@@ -113,15 +124,18 @@
 
                 chatMessages.innerHTML += `<div class="message sent">${message}</div>`;
                 messageInput.value = "";
+                scrollToBottom();
             });
 
             // Listen for incoming messages
             socket.on(`private message ${currentUserId}`, ({ senderId, message }) => {
                 if (senderId === currentChatUserId) {
                     chatMessages.innerHTML += `<div class="message received">${message}</div>`;
+                    scrollToBottom();
                 }
             });
         });
     </script>
 </body>
+
 </html>
