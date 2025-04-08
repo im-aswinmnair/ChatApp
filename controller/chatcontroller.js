@@ -1,7 +1,7 @@
 const User=require('../models/user')
 const Message=require('../models/chat')
 const jwt = require("jsonwebtoken");
-const user = require('../models/user');
+
 
 exports.getprofile = async (req, res) => {
     try {
@@ -119,16 +119,13 @@ exports.getCurrentUser =async (req, res) => {
 
 
 exports.getmessage=async(req,res)=>{
-    try {
-          
+
+    try {      
            const decoded = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
 
-       
             const userId = decoded.id; 
             const otherUserId = req.params.id;
 
-         
-    
             const messages = await Message.find({
                 $or: [
                     { senderId: userId, receiverId: otherUserId },

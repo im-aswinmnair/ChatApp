@@ -91,6 +91,7 @@ body, html {
 }
 
 /* Chat Window */
+
 .chat-window {
   width: 75%;
   display: flex;

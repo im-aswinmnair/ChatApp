@@ -41,7 +41,7 @@
 }
 
 /* Chat Container */
-.chat-container {git
+.chat-container {
   display: flex;
   height: 100vh;
   background: #e5ddd5;

@@ -3,10 +3,9 @@ const bcrypt = require("bcrypt");
 const transporter=require('../config/email')
 const otpGenerator = require("otp-generator");
 const crypto = require("crypto");
-const { error } = require('console');
 const jwt=require('jsonwebtoken')
 
-const SECRET_KEY = process.env.SECRET_KEY || "yourSecretKey";
+
 
 
 
@@ -161,9 +160,6 @@ exports.postlogin=async(req,res)=>{
     return res.redirect("/chat");
 }
      
-
-    
-
       return   res.redirect(`/profile`);
 
 

@@ -1,22 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const  express = require('express');
+const  path = require('path');
+const  cookieParser = require('cookie-parser');
+const  logger = require('morgan');
 const database = require('./config/db');
 const http = require('http');
 const hbs = require("hbs");
 const socketIo = require('socket.io');
-const mongoose = require('mongoose');
-const jwt=require('jsonwebtoken')
+
 require('dotenv').config();
 
-var indexRouter = require('./routes/authroute');
-var usersRouter = require('./routes/chatroute');
+const authRouter  = require('./routes/authroute');
+const chatRouter = require('./routes/chatroute');
+
+
 const Message = require('./models/chat');
 
 
-var app = express();
+const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
@@ -31,20 +32,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use('/', authRouter);
+app.use('/', chatRouter);
 
 database();
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
-  ///group chat 
-  // socket.on('groupchat', (room) => {
-  //   socket.join(room);
-  //   console.log(`User ${socket.id} joined room: ${room}`);
-  //   socket.to(room).emit("message", `User ${socket.id} has joined the chat`);
-  // });
 
   socket.on("sendMessage", ({ room, message }) => {
     io.to(room).emit("message", message);
@@ -85,6 +80,14 @@ app.use((req, res, next) => {
 
 hbs.registerHelper("eq", function (a, b) {
   return a === b;
+});
+
+app.use((err, req, res, next) => {
+   
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 module.exports = app;
